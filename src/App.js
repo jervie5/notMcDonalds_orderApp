@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CartModal from "./components/Cart/CartModal";
+import Header from "./components/Header/Header";
+import AvailableBurgers from "./components/Meals/AvailableBurgers";
+import AvailableDrinks from "./components/Meals/AvailableDrinks";
+import CartProvider from "./store/CartProvider";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AvailableFries from "./components/Meals/AvailableFries";
 
 function App() {
+  const [showCart, setShowCart] = useState(false);
+
+  const showCartHandler = () => {
+    setShowCart(true);
+  };
+
+  const hideCartHandler = () => {
+    setShowCart(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div>
+    <CartProvider>
+      <BrowserRouter>
+        {showCart && <CartModal onClose={hideCartHandler} />}
+        <Header onShow={showCartHandler} />
+        <Routes>
+          <Route path="/" element={<AvailableBurgers />} />
+          <Route path="/availDrinks" element={<AvailableDrinks />} />
+          <Route path="/availFries" element={<AvailableFries />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
+    // </div>
   );
 }
 
