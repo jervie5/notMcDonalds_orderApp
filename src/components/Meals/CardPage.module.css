@@ -41,8 +41,19 @@
   opacity: .5;
 }
 
-@media only screen and (max-width: 600px) {
- .cardPage{
-   flex-direction: column;
-  }
+.links {
+  position:sticky; 
+  top: 5rem;
+  text-align: center;
+  background-color: white;
+  margin: 1rem 0 1rem 0;
+  padding: 1rem 0 1rem 0;
+  
+
+}
+.links a {
+  /* position:-webkit-sticky;  */
+  text-decoration: none;
+  color: rgb(51, 50, 50);
+  font-weight: 250;
 }
