@@ -7,9 +7,6 @@ import CartProvider from "./store/CartProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AvailableFries from "./components/Meals/AvailableFries";
 
-
-
-
 function App() {
   const [showCart, setShowCart] = useState(false);
   const [burgerMeals, setBurgerMeals] = useState([]);
@@ -53,13 +50,9 @@ function App() {
 
     fetchData().catch((error) => {
       setErrorMessage(error.message);
-      console.log(errorMessage)
+      // console.log(errorMessage);
     });
-    
-}, []);
-
-  
-  
+  }, []);
 
   const showCartHandler = () => {
     setShowCart(true);
@@ -73,14 +66,20 @@ function App() {
     // <div>
     <CartProvider>
       <BrowserRouter>
-          {showCart && <CartModal onClose={hideCartHandler} />}
-          <Header onShow={showCartHandler} />
-          {!errorMessage && <p>{errorMessage}</p>}
+        {showCart && <CartModal onClose={hideCartHandler} />}
+        <Header onShow={showCartHandler} />
+        {!errorMessage && <p>{errorMessage}</p>}
 
         <Routes>
-          <Route path="/" element={<AvailableBurgers meals={burgerMeals}/>} />
-          <Route path="/drinks" element={<AvailableDrinks drinks={drinksMeals} />} />
-          <Route path="/fries" element={<AvailableFries fries={friesMeals}/>} />
+          <Route path="/" element={<AvailableBurgers meals={burgerMeals} />} />
+          <Route
+            path="/drinks"
+            element={<AvailableDrinks drinks={drinksMeals} />}
+          />
+          <Route
+            path="/fries"
+            element={<AvailableFries fries={friesMeals} />}
+          />
         </Routes>
       </BrowserRouter>
     </CartProvider>
