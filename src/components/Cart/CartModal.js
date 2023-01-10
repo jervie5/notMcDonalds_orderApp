@@ -1,15 +1,15 @@
 import React from "react";
-import CartContext from "../../store/meal-context";
-import { useContext, useState } from "react";
 import Modal from "../../UI/Modal";
 import classes from "./CartModal.module.css";
+import { useSelector } from "react-redux";
 
 const CartModal = (props) => {
-  const crtContext = useContext(CartContext);
-  const totalPrice =  crtContext.totalPrice.toFixed(2);
-  console.log(crtContext);
+  const selectCartItems = useSelector((state) => state.cart.items);
+  const selectTotalPrice = useSelector((state) => state.cart.totalAmount);
+  console.log("SELECTTOTALPRICE", selectTotalPrice);
+  const totalPrice = selectTotalPrice.toFixed(2);
 
-  const cartItems = crtContext.items.map((item) => (
+  const cartItems = selectCartItems.map((item) => (
     <React.Fragment key={item.id}>
       <div className={classes.summary}>
         <img src={item.image} alt="" />
@@ -18,7 +18,7 @@ const CartModal = (props) => {
           <p>Qty: {item.quantity}</p>
         </div>
       </div>
-        <hr />
+      <hr />
     </React.Fragment>
   ));
 

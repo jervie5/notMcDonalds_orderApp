@@ -1,24 +1,25 @@
 import React from "react";
 import classes from "./HeaderCart.module.css";
-import { useContext, useState, useEffect } from "react";
-import CartContext from "../../store/meal-context";
+import { useState, useEffect } from "react";
+
 import { ReactComponent as CartIcon } from "../../assets/cart-icon.svg";
+import { useSelector } from "react-redux";
 
 const HeaderCart = (props) => {
   const [itemToShow, setItemToShow] = useState(false);
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
+  const selectItems = useSelector((state) => state.cart.items);
   const btnClass = `${classes.button} ${btnIsHighlighted ? classes.shake : ""}`;
-  const crtContext = useContext(CartContext);
-  const totalNumberItems = crtContext.items.reduce(
+  const totalNumberItems = selectItems.reduce(
     (prevNum, currNum) => prevNum + currNum.quantity,
     0
   );
 
   useEffect(() => {
-    if (crtContext.items.length > 0) {
+    if (selectItems.length > 0) {
       setItemToShow(true);
-    } else if (crtContext.items.length === 0) {
+    } else if (selectItems.length === 0) {
       return;
     }
     setBtnIsHighlighted(true);
@@ -28,7 +29,7 @@ const HeaderCart = (props) => {
     return () => {
       clearTimeout(clearTimer);
     };
-  }, [crtContext.items]);
+  }, [selectItems]);
 
   return (
     <div>

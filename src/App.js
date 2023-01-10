@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CartModal from "./components/Cart/CartModal";
 import Header from "./components/Header/Header";
 import AvailableBurgers from "./components/Meals/AvailableBurgers";
 import AvailableDrinks from "./components/Meals/AvailableDrinks";
-import CartProvider from "./store/CartProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AvailableFries from "./components/Meals/AvailableFries";
 
@@ -45,7 +44,6 @@ function App() {
       superFn("burgers", burgerArr, setBurgerMeals);
       superFn("fries", friesArr, setFriesMeals);
       superFn("drinks", drinksArr, setDrinksmeals);
-      console.log("running");
     };
 
     fetchData().catch((error) => {
@@ -63,8 +61,7 @@ function App() {
   };
 
   return (
-    // <div>
-    <CartProvider>
+    <React.Fragment>
       <BrowserRouter>
         {showCart && <CartModal onClose={hideCartHandler} />}
         <Header onShow={showCartHandler} />
@@ -82,8 +79,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </CartProvider>
-    // </div>
+    </React.Fragment>
   );
 }
 

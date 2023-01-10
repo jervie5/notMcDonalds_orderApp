@@ -1,20 +1,22 @@
 import React from "react";
 import Card from "../../UI/Card";
 import classes from "./CardPage.module.css";
-import CartContext from "../../store/meal-context";
-import { useContext } from "react";
+import { addToCart } from "../../features/cartSlice";
+import { useDispatch } from "react-redux";
 
 const BurgersList = (props) => {
-  const crtContext = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const addItems = () => {
-      crtContext.addItem({
-          id: props.id,
-          name: props.name,
-          image: props.image,
-          price: props.price,
-          quantity: 1
+    dispatch(
+      addToCart({
+        id: props.id,
+        name: props.name,
+        image: props.image,
+        price: props.price,
+        quantity: 1,
       })
+    );
   };
   return (
     <Card>
