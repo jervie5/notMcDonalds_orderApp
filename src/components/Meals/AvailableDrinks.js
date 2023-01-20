@@ -9,7 +9,7 @@ const AvailableDrinks = (props) => {
       id={meal.id}
       name={meal.name}
       image={meal.image}
-      price={meal.price.toFixed(2)}
+      price={meal.price}
     />
   ));
 

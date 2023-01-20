@@ -2,69 +2,62 @@
   fill: currentColor;
   width: 3.5rem;
   height: 3.5rem;
-  color: rgb(255,188,15);
+  color: rgb(255, 188, 15);
 }
 
-.button{
+.button {
   cursor: pointer;
   font: inherit;
   border: none;
   width: 6rem;
   background-color: white;
-  color: rgb(255,0,2);
+  color: rgb(255, 0, 2);
   display: flex;
   align-items: center;
   border-radius: 30px;
   font-weight: bold;
 }
 
-
-
 .shake {
-  animation: shakeCart .4s ease-in-out forwards;
+  animation: shakeCart 0.4s ease-in-out forwards;
   cursor: pointer;
   font: inherit;
   border: none;
   width: 6rem;
-  background-color:rgb(240, 240, 240);
-  color: rgb(255,0,2);
+  background-color: rgb(240, 240, 240);
+  color: rgb(255, 0, 2);
   display: flex;
   align-items: center;
   border-radius: 30px;
   font-weight: bold;
-
 }
-
 
 @keyframes xAxis {
-100% {
-  transform: translateX(calc(50vw - 105px));
-}
+  100% {
+    transform: translateX(calc(50vw - 105px));
+  }
 }
 
 @keyframes yAxis {
-100% {
-  transform: translateY(calc(-50vh + 75px));
-}
+  100% {
+    transform: translateY(calc(-50vh + 75px));
+  }
 }
 
 @keyframes shakeCart {
-25% {
-  transform:translateX(6px)
+  25% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
-50% {
-  transform:translateX(-4px);
-}
-75% {
-  transform:translateX(2px);
-}
-100% {
-  transform:translateX(0);
-}
-}
-
-
-
 
 /* .shake {
   animation: shakeCart .4s ease-in-out forwards;

@@ -1,13 +1,35 @@
 import React from "react";
 import Modal from "../../UI/Modal";
 import classes from "./CartModal.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeItem } from "../../features/cartSlice";
 
 const CartModal = (props) => {
   const selectCartItems = useSelector((state) => state.cart.items);
-  const selectTotalPrice = useSelector((state) => state.cart.totalAmount);
+  const selectTotalPrice = useSelector((state) => state.cart.totalGrandPrice);
+  const dispatch = useDispatch();
   console.log("SELECTTOTALPRICE", selectTotalPrice);
+
+  console.log("CART ITEMS", selectCartItems);
+
   const totalPrice = selectTotalPrice.toFixed(2);
+
+  const addQuantityHandler = (item) => {
+    dispatch(
+      addToCart({
+        id: item.id,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+        image: item.image,
+        totalPrice: item.quantity * item.price,
+      })
+    );
+  };
+
+  const removeItemHandler = (item) => {
+    dispatch(removeItem(item.id));
+  };
 
   const cartItems = selectCartItems.map((item) => (
     <React.Fragment key={item.id}>
@@ -16,6 +38,18 @@ const CartModal = (props) => {
         <div>
           <h4> {item.name}</h4> <p>Price: $ {item.price} </p>
           <p>Qty: {item.quantity}</p>
+          <button
+            className={classes.removeBtn}
+            onClick={removeItemHandler.bind(this, item)}
+          >
+            -
+          </button>
+          <button
+            className={classes.addBtn}
+            onClick={addQuantityHandler.bind(this, item)}
+          >
+            +
+          </button>
         </div>
       </div>
       <hr />

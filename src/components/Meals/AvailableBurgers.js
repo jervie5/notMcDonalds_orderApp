@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import classes from "./CardPage.module.css";
 import BurgersList from "./BurgersList";
 
@@ -12,11 +11,7 @@ const AvailableBurgers = (props) => {
       price={burger.price}
     />
   ));
-  return (
-    <div className={classes.cardPage}>
-      {burgerList}
-    </div>
-  );
+  return <div className={classes.cardPage}>{burgerList}</div>;
 };
 
 export default AvailableBurgers;
