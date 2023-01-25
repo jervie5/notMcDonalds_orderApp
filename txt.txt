@@ -1,0 +1,1 @@
+* fetch data from firebase ( getData() to fix ./features/mealSlice.js , fetchData.js ( also to fix ))
