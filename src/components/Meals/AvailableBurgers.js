@@ -1,8 +1,11 @@
 import classes from "./CardPage.module.css";
 import BurgersList from "./BurgersList";
+import { useSelector } from "react-redux";
 
-const AvailableBurgers = (props) => {
-  const burgerList = props.meals.map((burger) => (
+const AvailableBurgers = () => {
+  const allBurgers = useSelector((state) => state.meal.burgers);
+
+  const burgerList = allBurgers.map((burger) => (
     <BurgersList
       key={burger.id}
       id={burger.id}

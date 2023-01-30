@@ -1,9 +1,11 @@
 import React from "react";
 import classes from "./CardPage.module.css";
 import DrinksList from "./DrinksList";
+import { useSelector } from "react-redux";
 
-const AvailableDrinks = (props) => {
-  const mealList = props.drinks.map((meal) => (
+const AvailableDrinks = () => {
+  const allDrinks = useSelector((state) => state.meal.drinks);
+  const mealList = allDrinks.map((meal) => (
     <DrinksList
       key={meal.id}
       id={meal.id}

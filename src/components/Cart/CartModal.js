@@ -8,9 +8,6 @@ const CartModal = (props) => {
   const selectCartItems = useSelector((state) => state.cart.items);
   const selectTotalPrice = useSelector((state) => state.cart.totalGrandPrice);
   const dispatch = useDispatch();
-  console.log("SELECTTOTALPRICE", selectTotalPrice);
-
-  console.log("CART ITEMS", selectCartItems);
 
   const totalPrice = selectTotalPrice.toFixed(2);
 

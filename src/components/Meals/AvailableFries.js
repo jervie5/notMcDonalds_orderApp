@@ -1,9 +1,12 @@
 import React from "react";
 import FriesList from "./FriesList";
-import classes from './CardPage.module.css'
+import classes from "./CardPage.module.css";
+import { useSelector } from "react-redux";
 
-const AvailableFries = (props) => {
-  const fries = props.fries.map((item) => (
+const AvailableFries = () => {
+  const allFries = useSelector((state) => state.meal.fries);
+
+  const fries = allFries.map((item) => (
     <FriesList
       key={item.id}
       id={item.id}
